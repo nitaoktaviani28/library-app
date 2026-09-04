@@ -22,7 +22,7 @@ spec:
 
         - name: library-app
 
-          image: library-app:v1
+          image: haechanlovelove/library-app:v1
 
           imagePullPolicy: IfNotPresent
 
