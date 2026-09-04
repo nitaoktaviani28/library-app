@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: library-app
+  namespace: prestage
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: library-app
+
+  template:
+    metadata:
+      labels:
+        app: library-app
+
+    spec:
+      containers:
+
+        - name: library-app
+
+          image: library-app:v1
+
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - containerPort: 5000
+
+          envFrom:
+
+            - configMapRef:
+                name: library-config
+
+            - secretRef:
+                name: library-secret
+
+          resources:
+
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
