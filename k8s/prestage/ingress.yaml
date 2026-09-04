@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  name: library-ingress
+  namespace: prestage
+
+spec:
+  ingressClassName: nginx
+
+  rules:
+
+    - host: prestage-library.local
+
+      http:
+
+        paths:
+
+          - path: /
+            pathType: Prefix
+
+            backend:
+
+              service:
+                name: library-service
+                port:
+                  number: 80
