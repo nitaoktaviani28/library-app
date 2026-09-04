@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: library-config
+  namespace: dev
+
+data:
+  APP_NAME: "Library Management"
+  APP_ENV: "DEV"
+  APP_VERSION: "v1"
