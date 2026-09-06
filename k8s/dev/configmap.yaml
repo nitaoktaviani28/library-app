@@ -1,9 +1,14 @@
+# API version untuk resource ConfigMap
 apiVersion: v1
+# Jenis resource Kubernetes
 kind: ConfigMap
+
+# Metadata identitas resource
 metadata:
   name: library-config
   namespace: dev
 
+# Kumpulan environment variable non-rahasia untuk aplikasi
 data:
   APP_NAME: "Library Management"
   APP_ENV: "DEV"

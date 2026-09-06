@@ -1,34 +1,47 @@
+# API version untuk resource Deployment
 apiVersion: apps/v1
+# Jenis resource Kubernetes
 kind: Deployment
 
+# Metadata identitas deployment
 metadata:
   name: library-app
   namespace: prestage
 
+# Spesifikasi deployment pod aplikasi
 spec:
+  # Jumlah pod awal yang dijalankan
   replicas: 3
 
+  # Selector harus cocok dengan label pod template
   selector:
     matchLabels:
       app: library-app
 
+  # Template pod yang akan direplikasi
   template:
     metadata:
+      # Label pod agar dikenali oleh Deployment dan Service
       labels:
         app: library-app
 
     spec:
+      # Daftar container dalam satu pod
       containers:
 
         - name: library-app
 
+          # Image container aplikasi
           image: haechanlovelove/library-app:v1
 
+          # Gunakan image lokal jika sudah ada di node
           imagePullPolicy: IfNotPresent
 
+          # Port aplikasi di dalam container
           ports:
             - containerPort: 5000
 
+          # Muat env var dari ConfigMap dan Secret
           envFrom:
 
             - configMapRef:
@@ -37,6 +50,7 @@ spec:
             - secretRef:
                 name: library-secret
 
+          # Batas minimum dan maksimum resource container
           resources:
 
             requests:

@@ -1,16 +1,23 @@
+# API version untuk resource Service
 apiVersion: v1
+# Jenis resource Kubernetes
 kind: Service
 
+# Metadata identitas service
 metadata:
   name: library-service
   namespace: dev
 
+# Spesifikasi service untuk ekspos pod aplikasi
 spec:
+  # Cari pod dengan label ini sebagai backend
   selector:
     app: library-app
 
+  # Mapping port service ke port container
   ports:
     - port: 80
       targetPort: 5000
 
+  # Service internal cluster (tidak terekspos keluar)
   type: ClusterIP
